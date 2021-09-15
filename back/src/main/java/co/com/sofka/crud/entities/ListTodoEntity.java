@@ -7,16 +7,15 @@ import java.util.Set;
 
 
 @Entity
-@Table (name = "tasks_todo_list")
+@Table (name = "todo_lists")
 public final class ListTodoEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nameTask;
-    @OneToMany (cascade = CascadeType.ALL,  orphanRemoval = true)
-    private Set<TaskTodoEntity> task;
+    private String nameList;
     private boolean completed;
-
+    private Long list_id;
 
 
     public ListTodoEntity() {
@@ -30,20 +29,12 @@ public final class ListTodoEntity {
         this.id = id;
     }
 
-    public String getNameTask() {
-        return nameTask;
+    public String getNameList() {
+        return nameList;
     }
 
-    public void setNameTask(String nameTask) {
-        this.nameTask = nameTask;
-    }
-
-    public Set<TaskTodoEntity> getTask() {
-        return task;
-    }
-
-    public void setTask(Set<TaskTodoEntity> task) {
-        this.task = task;
+    public void setNameList(String nameList) {
+        this.nameList = nameList;
     }
 
     public boolean isCompleted() {
@@ -52,5 +43,13 @@ public final class ListTodoEntity {
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
+    }
+
+    public Long getList_id() {
+        return list_id;
+    }
+
+    public void setList_id(Long list_id) {
+        this.list_id = list_id;
     }
 }

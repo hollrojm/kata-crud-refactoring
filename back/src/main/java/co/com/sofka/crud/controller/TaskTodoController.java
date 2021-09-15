@@ -1,43 +1,44 @@
 package co.com.sofka.crud.controller;
 
 import co.com.sofka.crud.entities.TaskTodoEntity;
-import co.com.sofka.crud.services.TodoService;
+import co.com.sofka.crud.services.TaskTodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
-public class TodoController {
+@RequestMapping("api")
+public final class TaskTodoController {
 
     @Autowired
-    private TodoService service;
+    private TaskTodoService Servicetask;
 
-    @GetMapping(value = "api/todos")
+    @GetMapping(value = "/alltasks")
     public Iterable<TaskTodoEntity> list(){
-        return service.list();
-    }
-    
-    @PostMapping(value = "api/todo")
-    public TaskTodoEntity save(@RequestBody TaskTodoEntity todo){
-        return service.save(todo);
+        return Servicetask.list();
     }
 
-    @PutMapping(value = "api/todo")
+    @PostMapping(value = "/savetask")
+    public TaskTodoEntity save(@RequestBody TaskTodoEntity todo){
+        return Servicetask.save(todo);
+    }
+
+    @PutMapping(value = "/updatetask")
     public TaskTodoEntity update(@RequestBody TaskTodoEntity todo){
         if(todo.getId() != null){
-            return service.save(todo);
+            return Servicetask.save(todo);
         }
-        throw new RuntimeException("No existe el id para actualziar");
+        throw new RuntimeException("No existe id para actualizar");
     }
 
-    @DeleteMapping(value = "api/{id}/todo")
+    @DeleteMapping(value = "/deletetask{id}")
     public void delete(@PathVariable("id")Long id){
-        service.delete(id);
+        Servicetask.delete(id);
     }
 
-    @GetMapping(value = "api/{id}/todo")
+    @GetMapping(value = "/taskid{id}")
     public TaskTodoEntity get(@PathVariable("id") Long id){
-        return service.get(id);
+        return Servicetask.get(id);
     }
-
 }

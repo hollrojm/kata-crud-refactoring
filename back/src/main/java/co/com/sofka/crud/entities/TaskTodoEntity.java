@@ -1,17 +1,22 @@
 package co.com.sofka.crud.entities;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-@Table(name = "todo_Lists")
+@Table(name = "tasks_todo_lists")
 public class TaskTodoEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique = true, nullable = false)
     private Long id;
     private String nameList;
-    private boolean completed;
-    private Long groupListId;
+    @OneToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "list_id")
+    private Set<ListTodoEntity> tasks;
+
+    public TaskTodoEntity() {
+    }
 
     public Long getId() {
         return id;
@@ -29,19 +34,11 @@ public class TaskTodoEntity {
         this.nameList = nameList;
     }
 
-    public boolean isCompleted() {
-        return completed;
+    public Set<ListTodoEntity> getTasks() {
+        return tasks;
     }
 
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
-    }
-
-    public Long getGroupListId() {
-        return groupListId;
-    }
-
-    public void setGroupListId(Long groupListId) {
-        this.groupListId = groupListId;
+    public void setTasks(Set<ListTodoEntity> tasks) {
+        this.tasks = tasks;
     }
 }
