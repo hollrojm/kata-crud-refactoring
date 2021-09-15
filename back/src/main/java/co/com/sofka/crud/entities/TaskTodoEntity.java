@@ -4,22 +4,14 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "todo_Lists")
-public class Todo {
+public class TaskTodoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
-    private String name;
+    private String nameList;
     private boolean completed;
-    private String groupListId;
-
-    public String getGroupListId() {
-        return groupListId;
-    }
-
-    public void setGroupListId(String groupListId) {
-        this.groupListId = groupListId;
-    }
+    private Long groupListId;
 
     public Long getId() {
         return id;
@@ -29,12 +21,12 @@ public class Todo {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNameList() {
+        return nameList;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNameList(String nameList) {
+        this.nameList = nameList;
     }
 
     public boolean isCompleted() {
@@ -43,5 +35,13 @@ public class Todo {
 
     public void setCompleted(boolean completed) {
         this.completed = completed;
+    }
+
+    public Long getGroupListId() {
+        return groupListId;
+    }
+
+    public void setGroupListId(Long groupListId) {
+        this.groupListId = groupListId;
     }
 }
