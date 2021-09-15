@@ -1,7 +1,7 @@
 package co.com.sofka.crud.services;
 
 import co.com.sofka.crud.entities.TaskTodoEntity;
-import co.com.sofka.crud.repositories.TodoRepository;
+import co.com.sofka.crud.repositories.ListTodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class TodoService {
 
     @Autowired
-    private TodoRepository repository;
+    private ListTodoRepository repository;
 
     public Iterable<TaskTodoEntity> list(){
         return repository.findAll();
