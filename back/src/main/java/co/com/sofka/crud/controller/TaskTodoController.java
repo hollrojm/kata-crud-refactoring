@@ -1,5 +1,6 @@
 package co.com.sofka.crud.controller;
 
+
 import co.com.sofka.crud.entities.TaskTodoEntity;
 import co.com.sofka.crud.services.TaskTodoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,14 +21,14 @@ public final class TaskTodoController {
     }
 
     @PostMapping(value = "/savetask")
-    public TaskTodoEntity save(@RequestBody TaskTodoEntity todo){
-        return Servicetask.save(todo);
+    public TaskTodoEntity save(@RequestBody TaskTodoEntity taskTodoEntity){
+        return Servicetask.save(taskTodoEntity);
     }
 
     @PutMapping(value = "/updatetask")
-    public TaskTodoEntity update(@RequestBody TaskTodoEntity todo){
-        if(todo.getId() != null){
-            return Servicetask.save(todo);
+    public TaskTodoEntity update(@RequestBody TaskTodoEntity taskTodoEntity){
+        if(taskTodoEntity.getId() != null){
+            return Servicetask.save(taskTodoEntity);
         }
         throw new RuntimeException("No existe id para actualizar");
     }

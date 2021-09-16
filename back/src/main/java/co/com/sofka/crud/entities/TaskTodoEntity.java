@@ -1,19 +1,28 @@
 package co.com.sofka.crud.entities;
 
+
+
 import javax.persistence.*;
 import java.util.Set;
 
-@Entity
-@Table(name = "tasks_todo_lists")
-public class TaskTodoEntity {
 
+@Entity
+@Table (name = "tasks")
+public final class TaskTodoEntity {
+//Tarea
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id",unique = true, nullable = false )
     private Long id;
-    private String nameList;
-    @OneToMany (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "list_id")
-    private Set<ListTodoEntity> tasks;
+
+    @Column()
+    private String name_task;
+
+    @Column()
+    private Boolean completed;
+
+    @Column()
+    private Long id_list_task;
 
     public TaskTodoEntity() {
     }
@@ -26,19 +35,27 @@ public class TaskTodoEntity {
         this.id = id;
     }
 
-    public String getNameList() {
-        return nameList;
+    public String getName_task() {
+        return name_task;
     }
 
-    public void setNameList(String nameList) {
-        this.nameList = nameList;
+    public void setName_task(String name_task) {
+        this.name_task = name_task;
     }
 
-    public Set<ListTodoEntity> getTasks() {
-        return tasks;
+    public Boolean getCompleted() {
+        return completed;
     }
 
-    public void setTasks(Set<ListTodoEntity> tasks) {
-        this.tasks = tasks;
+    public void setCompleted(Boolean completed) {
+        this.completed = completed;
+    }
+
+    public Long getId_task() {
+        return id_list_task;
+    }
+
+    public void setId_task(Long id_list_task) {
+        this.id_list_task = id_list_task;
     }
 }
