@@ -9,19 +9,22 @@ public class Todo {
     @GeneratedValue
     @Column(unique = true, nullable = false)
     private Long id;
-    @Column
+    @Column()
     private String name;
-    @Column
+    @Column()
     private boolean completed;
-    @Column
-    private String groupListId;
+    @Column()
+    private Long groupId;
 
-    public String getGroupListId() {
-        return groupListId;
+    public Todo() {
     }
 
-    public void setGroupListId(String groupListId) {
-        this.groupListId = groupListId;
+    public Long getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
     }
 
     public Long getId() {

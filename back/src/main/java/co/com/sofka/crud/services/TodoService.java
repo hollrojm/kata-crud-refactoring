@@ -11,6 +11,7 @@ public class TodoService {
     @Autowired
     private TodoRepository repository;
 
+
     public Iterable<Todo> list(){
         return repository.findAll();
     }
@@ -23,8 +24,17 @@ public class TodoService {
         repository.delete(get(id));
     }
 
+
     public Todo get(Long id){
          return repository.findById(id).orElseThrow();
+    }
+
+    public Todo update(Todo todo) {
+        if(repository.findById(todo.getId()).isEmpty()){
+            throw new RuntimeException("EL id seleccionado no existe");
+        }
+        return repository.save(todo);
+
     }
 
 }

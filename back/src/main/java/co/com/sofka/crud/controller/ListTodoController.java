@@ -27,12 +27,8 @@ public final class ListTodoController {
 
     @PutMapping(value = "/listtodoupdate")
     public ListTodo update(@RequestBody ListTodo listTodo){
-        if(listTodo.getId() != null){
-            return service.save(listTodo);
-        }
-        throw new RuntimeException("No existe el id para actualziar");
+            return service.update(listTodo);
     }
-
     @DeleteMapping(value = "/listtododelete")
     public void delete(@PathVariable("id")Long id){
         service.delete(id);

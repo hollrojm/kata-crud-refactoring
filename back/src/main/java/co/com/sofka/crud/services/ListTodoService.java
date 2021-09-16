@@ -1,6 +1,7 @@
 package co.com.sofka.crud.services;
 
 import co.com.sofka.crud.entities.ListTodo;
+import co.com.sofka.crud.entities.Todo;
 import co.com.sofka.crud.repository.ListTodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,5 +27,13 @@ public final class ListTodoService {
 
     public ListTodo get(Long id){
         return repository.findById(id).orElseThrow();
+    }
+
+    public ListTodo update(ListTodo listTodo) {
+        if(repository.findById(listTodo.getId()).isEmpty()){
+            throw new RuntimeException("EL id seleccionado no existe");
+        }
+        return repository.save(listTodo);
+
     }
 }

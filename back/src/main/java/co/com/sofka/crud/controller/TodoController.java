@@ -24,11 +24,8 @@ public class TodoController {
     }
 
     @PutMapping(value = "/todoupdate")
-    public Todo update(@RequestBody Todo todo){
-        if(todo.getId() != null){
-            return service.save(todo);
-        }
-        throw new RuntimeException("No existe el id para actualziar");
+    public Todo update(@RequestBody Todo todo) {
+        return service.update(todo);
     }
 
     @DeleteMapping(value = "/tododelete/{id}")
