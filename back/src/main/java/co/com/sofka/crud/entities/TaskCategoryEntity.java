@@ -5,7 +5,7 @@ import java.util.Set;
 
 
 @Entity
-@Table(name = "liststodo")
+@Table(name = "task_categories")
 public final class TaskCategoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,7 +14,7 @@ public final class TaskCategoryEntity {
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "groupId")
+    @JoinColumn(name = "taskCat_id")
     private Set<TaskEntity> todos;
 
 

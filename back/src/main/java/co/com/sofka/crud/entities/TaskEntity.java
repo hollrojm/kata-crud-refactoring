@@ -3,7 +3,7 @@ package co.com.sofka.crud.entities;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "todo")
+@Table(name = "tasks")
 public class TaskEntity {
     @Id
     @GeneratedValue
@@ -17,17 +17,17 @@ public class TaskEntity {
     private boolean completed;
 
     @Column()
-    private Long groupId;
+    private Long taskCat_id;
 
     public TaskEntity() {
     }
 
-    public Long getGroupId() {
-        return groupId;
+    public Long getTaskCat_id() {
+        return taskCat_id;
     }
 
-    public void setGroupId(Long groupId) {
-        this.groupId = groupId;
+    public void setTaskCat_id(Long taskCat_id) {
+        this.taskCat_id = taskCat_id;
     }
 
     public Long getId() {
