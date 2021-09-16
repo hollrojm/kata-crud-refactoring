@@ -29,7 +29,7 @@ public final class ListTodoController {
     public ListTodo update(@RequestBody ListTodo listTodo){
             return service.update(listTodo);
     }
-    @DeleteMapping(value = "/listtododelete")
+    @DeleteMapping(value = "/listtododelete/{id}")
     public void delete(@PathVariable("id")Long id){
         service.delete(id);
     }

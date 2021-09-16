@@ -10,10 +10,13 @@ public class Todo {
     @Column(unique = true, nullable = false)
     private Long id;
     @Column()
+
     private String name;
     @Column()
+
     private boolean completed;
     @Column()
+
     private Long groupId;
 
     public Todo() {

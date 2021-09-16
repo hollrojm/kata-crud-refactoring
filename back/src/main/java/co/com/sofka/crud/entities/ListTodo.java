@@ -13,7 +13,7 @@ public final class ListTodo {
     @Column()
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "groupId")
     private Set<Todo> todos;
 
