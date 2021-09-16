@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "todo")
-public class Todo {
+public class TaskEntity {
     @Id
     @GeneratedValue
     @Column(unique = true, nullable = false)
@@ -19,7 +19,7 @@ public class Todo {
 
     private Long groupId;
 
-    public Todo() {
+    public TaskEntity() {
     }
 
     public Long getGroupId() {

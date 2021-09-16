@@ -1,22 +1,22 @@
 package co.com.sofka.crud.services;
 
-import co.com.sofka.crud.entities.Todo;
-import co.com.sofka.crud.repository.TodoRepository;
+import co.com.sofka.crud.entities.TaskEntity;
+import co.com.sofka.crud.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TodoService {
+public class TaskService {
 
     @Autowired
-    private TodoRepository repository;
+    private TaskRepository repository;
 
 
-    public Iterable<Todo> list(){
+    public Iterable<TaskEntity> list(){
         return repository.findAll();
     }
 
-    public Todo save(Todo todo){
+    public TaskEntity save(TaskEntity todo){
         return repository.save(todo);
     }
 
@@ -25,11 +25,11 @@ public class TodoService {
     }
 
 
-    public Todo get(Long id){
+    public TaskEntity get(Long id){
          return repository.findById(id).orElseThrow();
     }
 
-    public Todo update(Todo todo) {
+    public TaskEntity update(TaskEntity todo) {
         if(repository.findById(todo.getId()).isEmpty()){
             throw new RuntimeException("EL id seleccionado no existe");
         }

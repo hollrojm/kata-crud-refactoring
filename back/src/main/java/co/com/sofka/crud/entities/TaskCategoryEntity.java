@@ -6,7 +6,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "liststodo")
-public final class ListTodo {
+public final class TaskCategoryEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -15,10 +15,10 @@ public final class ListTodo {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "groupId")
-    private Set<Todo> todos;
+    private Set<TaskEntity> todos;
 
 
-    public ListTodo() {
+    public TaskCategoryEntity() {
     }
 
     public Long getId() {
@@ -37,11 +37,11 @@ public final class ListTodo {
         this.name = name;
     }
 
-    public Set<Todo> getTodos() {
+    public Set<TaskEntity> getTodos() {
         return todos;
     }
 
-    public void setTodos(Set<Todo> todos) {
+    public void setTodos(Set<TaskEntity> todos) {
         this.todos = todos;
     }
 }

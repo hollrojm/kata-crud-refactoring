@@ -1,30 +1,30 @@
 package co.com.sofka.crud.controller;
 
-import co.com.sofka.crud.entities.Todo;
-import co.com.sofka.crud.services.TodoService;
+import co.com.sofka.crud.entities.TaskEntity;
+import co.com.sofka.crud.services.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("api")
-public class TodoController {
+public class TaskController {
 
     @Autowired
-    private TodoService service;
+    private TaskService service;
 
     @GetMapping(value = "/todos")
-    public Iterable<Todo> list(){
+    public Iterable<TaskEntity> list(){
         return service.list();
     }
     
     @PostMapping(value = "/todosave")
-    public Todo save(@RequestBody Todo todo){
+    public TaskEntity save(@RequestBody TaskEntity todo){
         return service.save(todo);
     }
 
     @PutMapping(value = "/todoupdate")
-    public Todo update(@RequestBody Todo todo) {
+    public TaskEntity update(@RequestBody TaskEntity todo) {
         return service.update(todo);
     }
 
@@ -34,7 +34,7 @@ public class TodoController {
     }
 
     @GetMapping(value = "/todoid")
-    public Todo get(@PathVariable("id") Long id){
+    public TaskEntity get(@PathVariable("id") Long id){
         return service.get(id);
     }
 

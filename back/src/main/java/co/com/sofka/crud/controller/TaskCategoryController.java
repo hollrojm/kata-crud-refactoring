@@ -1,8 +1,7 @@
 package co.com.sofka.crud.controller;
 
-import co.com.sofka.crud.entities.ListTodo;
-import co.com.sofka.crud.entities.Todo;
-import co.com.sofka.crud.services.ListTodoService;
+import co.com.sofka.crud.entities.TaskCategoryEntity;
+import co.com.sofka.crud.services.TaskCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,23 +9,23 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("api")
 @CrossOrigin(origins = "http://localhost:3000")
-public final class ListTodoController {
+public final class TaskCategoryController {
 
     @Autowired
-    private ListTodoService service;
+    private TaskCategoryService service;
 
     @GetMapping(value = "/listtodoall")
-    public Iterable<ListTodo> list(){
+    public Iterable<TaskCategoryEntity> list(){
         return service.list();
     }
 
     @PostMapping(value = "/listsavetodo")
-    public ListTodo save(@RequestBody ListTodo listTodo){
+    public TaskCategoryEntity save(@RequestBody TaskCategoryEntity listTodo){
         return service.save(listTodo);
     }
 
     @PutMapping(value = "/listtodoupdate")
-    public ListTodo update(@RequestBody ListTodo listTodo){
+    public TaskCategoryEntity update(@RequestBody TaskCategoryEntity listTodo){
             return service.update(listTodo);
     }
     @DeleteMapping(value = "/listtododelete/{id}")
@@ -35,7 +34,7 @@ public final class ListTodoController {
     }
 
     @GetMapping(value = "/listtodoid/{id}")
-    public ListTodo get(@PathVariable("id") Long id){
+    public TaskCategoryEntity get(@PathVariable("id") Long id){
         return service.get(id);
     }
 }
