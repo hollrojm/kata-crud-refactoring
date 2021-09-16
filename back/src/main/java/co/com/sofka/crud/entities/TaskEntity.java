@@ -9,14 +9,14 @@ public class TaskEntity {
     @GeneratedValue
     @Column(unique = true, nullable = false)
     private Long id;
-    @Column()
 
+    @Column()
     private String name;
-    @Column()
 
+    @Column()
     private boolean completed;
-    @Column()
 
+    @Column()
     private Long groupId;
 
     public TaskEntity() {
