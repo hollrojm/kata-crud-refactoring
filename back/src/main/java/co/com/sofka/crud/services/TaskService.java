@@ -1,9 +1,13 @@
 package co.com.sofka.crud.services;
 
+import co.com.sofka.crud.DTO.TaskEntityDTO;
 import co.com.sofka.crud.entities.TaskEntity;
+import co.com.sofka.crud.mapper.TaskMapper;
 import co.com.sofka.crud.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class TaskService {
@@ -11,30 +15,33 @@ public class TaskService {
     @Autowired
     private TaskRepository repository;
 
+    @Autowired
+    private TaskMapper mapper;
 
-    public Iterable<TaskEntity> list(){
-        return repository.findAll();
+
+    public Iterable<TaskEntityDTO> list(){
+        List<TaskEntity> tasks = (List<TaskEntity>) repository.findAll();
+        return mapper.toTasksDto(tasks);
+
     }
 
-    public TaskEntity save(TaskEntity todo){
-        return repository.save(todo);
+    public TaskEntityDTO save(TaskEntityDTO taskEntityDTO){
+        TaskEntity taskEntity = mapper.toTaskEntity(taskEntityDTO);
+        return mapper.toTaskDto(repository.save(taskEntity));
+
     }
 
     public void delete(Long id){
-        repository.delete(get(id));
+        TaskEntity taskEntity = mapper.toTaskEntity(get(id));
+        repository.delete(taskEntity);
     }
 
 
-    public TaskEntity get(Long id){
-         return repository.findById(id).orElseThrow();
-    }
+    public TaskEntityDTO get(Long id){
 
-    public TaskEntity update(TaskEntity todo) {
-        if(repository.findById(todo.getId()).isEmpty()){
-            throw new RuntimeException("EL id seleccionado no existe");
-        }
-        return repository.save(todo);
-
+        return repository.findById(id)
+                .map(taskEntity -> mapper.toTaskDto(taskEntity))
+                .orElseThrow();
     }
 
 }

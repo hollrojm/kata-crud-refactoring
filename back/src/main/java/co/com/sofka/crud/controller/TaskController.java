@@ -1,5 +1,6 @@
 package co.com.sofka.crud.controller;
 
+import co.com.sofka.crud.DTO.TaskEntityDTO;
 import co.com.sofka.crud.entities.TaskEntity;
 import co.com.sofka.crud.services.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,28 +14,31 @@ public class TaskController {
     @Autowired
     private TaskService service;
 
-    @GetMapping(value = "/todos")
-    public Iterable<TaskEntity> list(){
+    @GetMapping(value = "/allTask")
+    public Iterable<TaskEntityDTO> list(){
         return service.list();
     }
     
-    @PostMapping(value = "/todosave")
-    public TaskEntity save(@RequestBody TaskEntity todo){
-        return service.save(todo);
+    @PostMapping(value = "/saveTask")
+    public TaskEntityDTO save(@RequestBody TaskEntityDTO taskEntityDTO){
+        return service.save(taskEntityDTO);
     }
 
-    @PutMapping(value = "/todoupdate")
-    public TaskEntity update(@RequestBody TaskEntity todo) {
-        return service.update(todo);
+    @PutMapping(value = "/saveTask")
+    public TaskEntityDTO update(@RequestBody TaskEntityDTO taskEntityDTO) {
+        if (taskEntityDTO.getId() != null) {
+            return service.save(taskEntityDTO);
+        }
+        throw new RuntimeException("EL id seleccionado no existe");
     }
 
-    @DeleteMapping(value = "/tododelete/{id}")
+    @DeleteMapping(value = "/deleteTask/{id}")
     public void delete(@PathVariable("id")Long id){
         service.delete(id);
     }
 
-    @GetMapping(value = "/todoid")
-    public TaskEntity get(@PathVariable("id") Long id){
+    @GetMapping(value = "/idTask")
+    public TaskEntityDTO get(@PathVariable("id") Long id){
         return service.get(id);
     }
 
