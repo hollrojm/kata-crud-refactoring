@@ -1,20 +1,17 @@
 import React, { createContext } from 'react';
-import { List } from './Components/List';
-import { StoreProvider } from './utils/StoreProvider';
-import FormTaskCategory from './Components/FormTaskCategory'
-
-export const HOST_API = "http://localhost:8080/api";
-export const initialState = {
-  todo: { list: [], item: {} }
-};
-export const Store = createContext(initialState)
+import  ListTaskCategory  from './Components/Category/ListTaskCategory';
+import  StoreProvider  from './utils/StoreProvider';
+import FormTaskCategory from './Components/Category/FormTaskCategory'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
   return <StoreProvider>
-    <h3>To-Do List</h3>
+    <div>
+    <h3 className="text-center">Agenda de tareas</h3>
+    </div>
     <FormTaskCategory />
-    <List />
+    <ListTaskCategory />
     
   </StoreProvider>
 }

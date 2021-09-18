@@ -1,9 +1,12 @@
 import React, { useContext, useEffect } from 'react';
-import { Store, HOST_API } from '../App';
-import  Form  from './Form';
+import  Store from '../../utils/Store';
+import  Form  from '../Task/Form';
+import  List  from '../Task/List';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export const List = () => {
+  const HOST_API = "http://localhost:8080/api";
+
+  const ListTaskCategory = () => {
   const { dispatch, state: { todo } } = useContext(Store);
   const currentList = todo.list;
 
@@ -16,11 +19,11 @@ export const List = () => {
   }, [dispatch]);
 
 
-  const onDelete = (id) => {
-    fetch(HOST_API + "/deleteCategory" +"/" + id +  {
+  const onDelete = (catid) => {
+    fetch(HOST_API + "/deleteCategory" +"/" + catid,  {
       method: "DELETE"
     }).then((list) => {
-      dispatch({ type: "delete-item", id });
+      dispatch({ type: "delete-item", catid });
     });
   };
 
@@ -34,7 +37,7 @@ export const List = () => {
       id: todo.id,
       completed: event.target.checked
     };
-    fetch(HOST_API + "/deleteCategory", {
+    fetch(HOST_API + "/saveCategory", {
       method: "PUT",
       body: JSON.stringify(request),
       headers: {
@@ -54,12 +57,18 @@ export const List = () => {
     
         {currentList.map((todo) => {
           return  (
-          <div>{todo.id}
+            
+          <div>
+            <p>Categorias---</p>
+            {todo.id}
           {todo.name}
           <input type="checkbox" defaultChecked={todo.completed} onChange={(event) => onChange(event, todo)}></input>
           <button onClick={() => onDelete(todo.id)}>Eliminar</button>
-          <button onClick={() => onEdit(todo)}>Editar</button>
-          <Form /> 
+          <Form id={todo.id}/> 
+          <List idlist={todo.id}/> 
+
+
+          <p>Fin Categorias---</p>
           </div>)
           
            
@@ -69,3 +78,4 @@ export const List = () => {
     
   </div>;
 };
+export  default ListTaskCategory

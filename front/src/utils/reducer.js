@@ -26,7 +26,15 @@ export function reducer(state, action) {
       const todoUpEdit = state.todo;
       todoUpEdit.item = action.item;
       return { ...state, todo: todoUpEdit };
+    case 'add-itemtask':
+      //const todoUpEditTask = state.taskCategory;
+      //todoUpEditTask.item = action.item;
+      //return { ...state, todo: todoUpEditTask };
+      const todoUpTask = state.taskCategory.list;
+      todoUpTask.push(action.item);
+      return { ...state, taskCategory: { list: todoUpTask, item: {} } };
     case 'add-item':
+      
       const todoUp = state.todo.list;
       todoUp.push(action.item);
       return { ...state, todo: { list: todoUp, item: {} } };

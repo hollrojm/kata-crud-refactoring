@@ -1,14 +1,17 @@
 import React, { useContext, useEffect } from 'react';
-import { Store, HOST_API } from '../App';
-import  Form  from './Form';
+import  Store  from '../../utils/Store';
+import  Form  from '../Task/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export const List = () => {
-  const { dispatch, state: { todo } } = useContext(Store);
-  const currentList = todo.list;
+  const HOST_API = "http://localhost:8080/api";
+
+  const List = (props) => {
+  const { dispatch, state: { taskCategory } } = useContext(Store);
+  const currentList = taskCategory.list;
+  const currentListTask = currentList.filter(task => task.groupListId == props.id)
 
   useEffect(() => {
-    fetch(HOST_API + "/allCategories")
+    fetch( HOST_API + "/allTask",)
       .then(response => response.json())
       .then((list) => {
         dispatch({ type: "update-list", list });
@@ -17,7 +20,7 @@ export const List = () => {
 
 
   const onDelete = (id) => {
-    fetch(HOST_API + "/deleteCategory" +"/" + id +  {
+    fetch(HOST_API +"/"+ id,{
       method: "DELETE"
     }).then((list) => {
       dispatch({ type: "delete-item", id });
@@ -50,22 +53,19 @@ export const List = () => {
   const decorationDone = {
     textDecoration: 'line-through'
   };
-  return <div>
+  return <div className="container">
     
         {currentList.map((todo) => {
-          return  (
-          <div>{todo.id}
+          return (
+          <div className="container">{todo.id}
           {todo.name}
-          <input type="checkbox" defaultChecked={todo.completed} onChange={(event) => onChange(event, todo)}></input>
           <button onClick={() => onDelete(todo.id)}>Eliminar</button>
-          <button onClick={() => onEdit(todo)}>Editar</button>
-          <Form /> 
-          </div>)
+          <Form idCategoria = {todo.id}
+            /> 
+          </div>
           
-           
+          )
         })}
-      
-    
-    
-  </div>;
+  </div>
 };
+export default List;

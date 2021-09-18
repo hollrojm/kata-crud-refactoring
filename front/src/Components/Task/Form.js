@@ -1,24 +1,30 @@
-import React, { useContext, useRef, useState } from 'react';
-import { Store, HOST_API } from '../App';
+import  React, { useContext, useRef, useState } from 'react';
+import  Store from '../../utils/Store'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-  const Form = () => {
+  const HOST_API = "http://localhost:8080/api";
+
+  const Form = (props) => {
+    console.log(props);
   const formRef = useRef(null);
-  const { dispatch, state: { todo } } = useContext(Store);
-  const item = todo.item;
+  const { dispatch, state: { taskCategory } } = useContext(Store);
+  const item = taskCategory.item;
   const [state, setState] = useState(item);
 
+ 
   const onAdd = (event) => {
     event.preventDefault();
-
+    console.log("guarrrrrr");
     const request = {
-      name: state.name,
+  
       id: null,
-      completed: false
+      completed: false,
+      name: state.name,
+      groupId: props.id
     };
 
 
-    fetch(HOST_API + "/saveCategory", {
+    fetch(HOST_API + "/saveTask", {
       method: "POST",
       body: JSON.stringify(request),
       headers: {
@@ -26,14 +32,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
       }
     })
       .then(response => response.json())
-      .then((todo) => {
-        dispatch({ type: "add-item", item: todo });
+      .then((taskCategory) => {
+        dispatch({ type: "add-itemtask", item: taskCategory });
         setState({ name: "" });
-        formRef.current.reset();
       });
   };
 
   const onEdit = (event) => {
+    console.log("editaaaaaaaa");
     event.preventDefault();
 
     const request = {
@@ -43,7 +49,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
     };
 
 
-    fetch(HOST_API + "/saveCategory", {
+    fetch(HOST_API + "/saveTask", {
       method: "PUT",
       body: JSON.stringify(request),
       headers: {
@@ -51,14 +57,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
       }
     })
       .then(response => response.json())
-      .then((todo) => {
-        dispatch({ type: "update-item", item: todo });
+      .then((taskCategory) => {
+        dispatch({ type: "edit-itemtask", item: taskCategory });
         setState({ name: "" });
-        formRef.current.reset();
       });
   };
 
-  return <form ref={formRef}>
+  return <div className="backform"><form ref={formRef}>
     <input
       required
       type="text"
@@ -70,8 +75,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
       }}></input>
     {item.id && <button onClick={onEdit}>Actualizar</button>}
     {!item.id && <button onClick={onAdd}>Crear</button>}
-  </form>;
+  </form>
+  </div>
 };
 
 
 export default Form;
+

@@ -1,8 +1,14 @@
 import React, { useReducer } from 'react';
 import { reducer } from './reducer';
-import { initialState, Store } from '../App';
+import  Store  from '../../src/utils/Store';
 
-export const StoreProvider = ({ children }) => {
+
+const initialState = {
+  todo: { list: [], item: {} },
+  taskCategory:{list:[], item:{}}
+};
+
+ const StoreProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return <Store.Provider value={{ state, dispatch }}>
@@ -10,3 +16,4 @@ export const StoreProvider = ({ children }) => {
   </Store.Provider>;
 
 };
+export default StoreProvider;
