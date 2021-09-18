@@ -1,16 +1,18 @@
 import React, { useContext, useRef, useState } from "react";
 import Store from "../../utils/Store";
+import { useForm } from "react-hook-form";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const HOST_API = "http://localhost:8080/api";
 
-const FormTaskCategory = (props) => {
+const FormTask = () => {
+  const inpufRef = useRef(null);
   const formRef = useRef(null);
   const {
     dispatch,
-    state: { todo },
+    state: { taskCategory },
   } = useContext(Store);
-  const item = todo.item;
+  const item = taskCategory.item;
   const [state, setState] = useState(item);
 
   const onAdd = (event) => {
@@ -27,22 +29,15 @@ const FormTaskCategory = (props) => {
         "Content-Type": "application/json",
       },
     })
-      .then((response) => response.json())
-      .then((todo) => {
-        dispatch({ type: "add-item", item: todo });
+      .then(response => response.json())
+      .then((taskCategory) => {
+        dispatch({ type: "add-itemtask", item: taskCategory });
         setState({ name: "" });
+        formRef.current.reset();
       });
   };
 
-  const onEdit = (event) => {
-    event.preventDefault();
 
-    const request = {
-      id: item.id,
-      name: state.name,
-      todos: props.todos,
-    };
-  };
 
   return (
     <div className="container border border-success">
@@ -68,4 +63,4 @@ const FormTaskCategory = (props) => {
   );
 };
 
-export default FormTaskCategory;
+export default FormTask;

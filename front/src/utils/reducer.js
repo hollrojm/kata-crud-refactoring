@@ -12,11 +12,18 @@ export function reducer(state, action) {
       todoUpItem.item = {};
       return { ...state, todo: todoUpItem };
     case 'delete-item':
-      const todoUpDelete = state.todo;
+      const todoUpDelete = state.taskCategory;
       const listUpdate = todoUpDelete.list.filter((item) => {
         return item.id !== action.id;
       });
       todoUpDelete.list = listUpdate;
+      return { ...state, todo: todoUpDelete };
+    case 'delete-itemtask':
+      const todoUpDeleteTask = state.todo;
+      const listUpdateTask = todoUpDeleteTask.list.filter((item) => {
+        return item.id !== action.id;
+      });
+      todoUpDeleteTask.list = listUpdateTask;
       return { ...state, todo: todoUpDelete };
     case 'update-list':
       const todoUpList = state.todo;
