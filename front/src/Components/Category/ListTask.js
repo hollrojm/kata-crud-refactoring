@@ -7,9 +7,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
   const HOST_API = "http://localhost:8080/api";
 
   const ListTask = () => {
-  const { dispatch, state: { taskCategory, element } } = useContext(Store);
+  const { dispatch, state: { taskCategory } } = useContext(Store);
   const currentListTask = taskCategory.list;
-
+ 
   useEffect(() => {
     fetch(HOST_API + "/allCategories")
       .then(response => response.json())
@@ -27,21 +27,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
     });
   };
 
-  // const onEdit = (todo) => {
-  //   dispatch({ type: "edit-item", item: todo });
-  // };
-
-  // 
+ 
+   
   return <div className=" container text-center">
-        {currentListTask.map((item) => {
-            return <div  key={item} >
+        {currentListTask.map((elemento) => {
+            console.log(currentListTask);
+            return <div  key={elemento.id} >
                 <div >
                     <span  className="input-group-text text-primary"> <b> Nombre de la Categoria </b></span>
-                    <input   className="form-control"  disabled={true} value={item} />
-                    <button onClick={() => onDelete(item)} className="btn btn-outline-danger ">Eliminar</button>
+                    <input   className="form-control"  disabled={true} value={elemento.id} />
+                    <button onClick={() => onDelete(elemento.id)} className="btn btn-outline-danger ">Eliminar</button>
                 </div>
-                <Form TodoListId={item} />
-                <Todo TodoListId={item} />
+                <Form TodoListId={elemento.id} />
+                <Todo TodoListId={elemento.id} />
             </div>
   })}
 </div>
