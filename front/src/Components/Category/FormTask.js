@@ -1,12 +1,11 @@
 import React, { useContext, useRef, useState } from "react";
 import Store from "../../utils/Store";
-import { useForm } from "react-hook-form";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const HOST_API = "http://localhost:8080/api";
 
 const FormTask = () => {
-  const inpufRef = useRef(null);
+  
   const formRef = useRef(null);
   const {
     dispatch,
@@ -19,8 +18,9 @@ const FormTask = () => {
     event.preventDefault();
 
     const request = {
-      name: state.name,
       id: null,
+      name: state.name,
+      
     };
     fetch(HOST_API + "/saveCategory", {
       method: "POST",

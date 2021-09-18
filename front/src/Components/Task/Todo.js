@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from 'react';
 import  Store  from '../../utils/Store';
-import  Form  from './Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
   const HOST_API = "http://localhost:8080/api";
@@ -8,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
   const Todo = (props) => {
   const { dispatch, state: { todo } } = useContext(Store);
   const currentList = todo.list.filter(todo => {
-    return todo.groupId === TodoListId; //Cabiar esta variable 
+    return todo.groupId === props.TodoListId; //Cabiar esta variable 
   });
 
   useEffect(() => {
@@ -21,7 +20,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
   const onDelete = (id) => {
-    fetch(HOST_API +"/"+ id,{
+    fetch(HOST_API + "/" + id,{
       method: "DELETE"
     }).then((list) => {
       dispatch({ type: "delete-item", id });
@@ -37,7 +36,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
       name: todo.name,
       id: todo.id,
       completed: event.target.checked,
-      groupId: TodoListId //cambiar esta variable
+      groupId: props.TodoListId //cambiar esta variable
     };
     fetch(HOST_API + "/updateTask", {
       method: "PUT",
@@ -58,7 +57,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
   return <div>
   <table  className="table table-striped">
     <thead >
-      <tr class="table table-striped table-dark">
+      <tr class="table table-striped table-succes">
         <td >ID</td>
         <td >Tarea</td>
         <td >Completado</td>

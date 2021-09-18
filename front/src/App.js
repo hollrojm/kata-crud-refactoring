@@ -1,7 +1,7 @@
 import React, { createContext } from 'react';
-import  ListTaskCategory  from './Components/Category/ListTaskCategory';
+import  ListTask  from './Components/Category/ListTask';
 import  StoreProvider  from './utils/StoreProvider';
-import FormTaskCategory from './Components/Category/FormTaskCategory'
+import FormTask from './Components/Category/FormTask'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -10,8 +10,8 @@ function App() {
     <div>
     <h3 className="text-center">Agenda de tareas</h3>
     </div>
-    <FormTaskCategory />
-    <ListTaskCategory />
+    <FormTask />
+    <ListTask />
     
   </StoreProvider>
 }

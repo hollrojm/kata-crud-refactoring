@@ -5,7 +5,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
   const HOST_API = "http://localhost:8080/api";
 
   const Form = (props) => {
-  const inputRef = useRef(null);
     console.log(props);
   const formRef = useRef(null);
   const { dispatch, state: { todo } } = useContext(Store);
@@ -48,7 +47,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
       name: state.name,
       id: item.id,
       isCompleted: item.isCompleted,
-      groupId: TodoListId
+      groupId: props.TodoListId
     };
 
 
