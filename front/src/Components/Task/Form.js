@@ -5,10 +5,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
   const HOST_API = "http://localhost:8080/api";
 
   const Form = (props) => {
+  const inputRef = useRef(null);
     console.log(props);
   const formRef = useRef(null);
-  const { dispatch, state: { taskCategory } } = useContext(Store);
-  const item = taskCategory.item;
+  const { dispatch, state: { todo } } = useContext(Store);
+  const item = todo.item;
   const [state, setState] = useState(item);
 
  
@@ -20,7 +21,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
       id: null,
       completed: false,
       name: state.name,
-      groupId: props.id
+      groupId: props.TodoListId
     };
 
 
@@ -32,9 +33,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
       }
     })
       .then(response => response.json())
-      .then((taskCategory) => {
-        dispatch({ type: "add-itemtask", item: taskCategory });
+      .then((todo) => {
+        dispatch({ type: "add-itemtask", item: todo });
         setState({ name: "" });
+        formRef.current.reset();
       });
   };
 
@@ -45,7 +47,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
     const request = {
       name: state.name,
       id: item.id,
-      isCompleted: item.isCompleted
+      isCompleted: item.isCompleted,
+      groupId: TodoListId
     };
 
 
@@ -57,9 +60,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
       }
     })
       .then(response => response.json())
-      .then((taskCategory) => {
-        dispatch({ type: "edit-itemtask", item: taskCategory });
+      .then((todo) => {
+        dispatch({ type: "edit-itemtask", item: todo });
         setState({ name: "" });
+        formRef.current.reset();
       });
   };
 
