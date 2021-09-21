@@ -11,19 +11,23 @@ export function reducer(state, action) {
       todoUpItem.list = listUpdateEdit;
       todoUpItem.item = {};
       return { ...state, todo: todoUpItem };
+    case 'delete-taskCategory':
+      const taskListDelete = state.taskCategory;
+      const listTaskUpdate = taskListDelete.list.filter((elemento) => {
+        return elemento.id !== action.id;
+      });
+      taskListDelete.list = listTaskUpdate;
+      return { ...state, taskCategory: taskListDelete };
+    // case 'taskCategory':
+    //   const taskCategory = state.taskCategory;
+    //   taskCategory.list = action.list;
+    //   return { ...state, taskCategory: taskCategory };
     case 'delete-item':
-      const todoUpDelete = state.taskCategory;
+      const todoUpDelete = state.todo;
       const listUpdate = todoUpDelete.list.filter((item) => {
         return item.id !== action.id;
       });
       todoUpDelete.list = listUpdate;
-      return { ...state, todo: todoUpDelete };
-    case 'delete-itemtask':
-      const todoUpDeleteTask = state.todo;
-      const listUpdateTask = todoUpDeleteTask.list.filter((item) => {
-        return item.id !== action.id;
-      });
-      todoUpDeleteTask.list = listUpdateTask;
       return { ...state, todo: todoUpDelete };
     case 'update-list':
       const todoUpList = state.todo;
@@ -38,10 +42,18 @@ export function reducer(state, action) {
       todoUpTask.push(action.item);
       return { ...state, taskCategory: { list: todoUpTask, item: {} } };
     case 'add-item':
-      
       const todoUp = state.todo.list;
       todoUp.push(action.item);
       return { ...state, todo: { list: todoUp, item: {} } };
+    case 'all-itemtask':
+        const taskCategory = state.taskCategory;
+        taskCategory.list = action.list;
+        return { ...state, taskCategory: taskCategory };
+    case 'todolist-add':
+          const todoListAdd = state.taskCategory.list;
+          todoListAdd.push(action.item);
+          return { ...state, taskCategory: {list:todoListAdd} };
+    
     default:
       return state;
   }

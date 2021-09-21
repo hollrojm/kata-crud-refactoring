@@ -31,7 +31,7 @@ const FormTask = () => {
     })
       .then(response => response.json())
       .then((taskCategory) => {
-        dispatch({ type: "add-itemtask", item: taskCategory });
+        dispatch({ type: "Category-add", item: taskCategory });
         setState({ name: "" });
         formRef.current.reset();
       });

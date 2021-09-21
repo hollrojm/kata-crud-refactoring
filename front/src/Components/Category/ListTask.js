@@ -14,7 +14,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
     fetch(HOST_API + "/allCategories")
       .then(response => response.json())
       .then((list) => {
-        dispatch({ type: "add-itemtask", list });
+        dispatch({ type: "all-itemtask", list });
       });
   }, [dispatch]);
 
@@ -35,7 +35,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
             return <div  key={elemento.id} >
                 <div >
                     <span  className="input-group-text text-primary"> <b> Nombre de la Categoria </b></span>
-                    <input   className="form-control"  disabled={true} value={elemento.id} />
+                    <input   className="form-control"  disabled={true} value={elemento.name} />
                     <button onClick={() => onDelete(elemento.id)} className="btn btn-outline-danger ">Eliminar</button>
                 </div>
                 <Form TodoListId={elemento.id} />
