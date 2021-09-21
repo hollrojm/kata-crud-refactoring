@@ -3,10 +3,10 @@ import { reducer } from './reducer';
 import  Store  from '../../src/utils/Store';
 
 
-const initialState = {
-  todo: { list: [], item: {} },
-  taskCategory:{list:[], item:{}}
-};
+ const initialState = {
+   todo: { list: [], item: {} },
+   taskCategory:{list:[], item:{}}
+ };
 
  const StoreProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);

@@ -16,3 +16,11 @@ code {
 .backform{
   /* background-color: #03787C; */
 }
+
+.required1.required::after {
+  content: "*";
+  color: rgb(255, 95, 95);
+  position: absolute;
+  top: -5px;
+  right: -10px;
+}

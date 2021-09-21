@@ -40,7 +40,7 @@ const FormTask = () => {
 
 
   return (
-    <div className="container border border-success">
+    <div className="container border border-success .required1">
       <form ref={formRef}>
         {!item.id && (
           <button className="btn btn-outline-success mt-3" onClick={onAdd}>
@@ -48,8 +48,9 @@ const FormTask = () => {
           </button>
         )}
         <input
-          className="form-control m-3 "
-          type="text"
+          
+          className="form-control m-1 "
+          type="text" required
           placeholder="Añade una categoria"
           name="name"
           defaultValue={item.name}
