@@ -23,7 +23,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
     fetch(HOST_API + "/deleteCategory" +"/" + id,  {
       method: "DELETE"
     }).then((list) => {
-      dispatch({ type: "delete-itemtask", id });
+      dispatch({ type: "delete-taskCategory", id });
     });
   };
 
@@ -34,9 +34,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
             console.log(currentListTask);
             return <div  key={elemento.id} >
                 <div >
-                    <span  className="input-group-text text-primary"> <b> Nombre de la Categoria </b></span>
-                    <input   className="form-control"  disabled={true} value={elemento.name} />
-                    <button onClick={() => onDelete(elemento.id)} className="btn btn-outline-danger ">Eliminar</button>
+                    <span  className="input-group-text text-primary"> <b> Nombre de la Categoria </b><input   className="form-control"  disabled={true} value={elemento.name} /></span>
+                    
+                    <button onClick={() => onDelete(elemento.id)} className="btn btn-outline-danger ">Eliminar Categoria</button>
                 </div>
                 <Form TodoListId={elemento.id} />
                 <Todo TodoListId={elemento.id} />

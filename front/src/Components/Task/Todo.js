@@ -20,7 +20,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
   const onDelete = (id) => {
-    fetch(HOST_API + "/" + id,{
+    fetch(HOST_API + "/deleteTask/" + id,{
       method: "DELETE"
     }).then((list) => {
       dispatch({ type: "delete-item", id });
@@ -38,7 +38,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
       completed: event.target.checked,
       groupId: props.TodoListId //cambiar esta variable
     };
-    fetch(HOST_API + "/updateTask", {
+    fetch(HOST_API + "/saveTask", {
       method: "PUT",
       body: JSON.stringify(request),
       headers: {

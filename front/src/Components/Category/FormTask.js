@@ -31,7 +31,7 @@ const FormTask = () => {
     })
       .then(response => response.json())
       .then((taskCategory) => {
-        dispatch({ type: "Category-add", item: taskCategory });
+        dispatch({ type: "add-itemtask", item: taskCategory });
         setState({ name: "" });
         formRef.current.reset();
       });
@@ -50,8 +50,7 @@ const FormTask = () => {
         <input
           className="form-control m-3 "
           type="text"
-          required
-          placeholder="TASKCATEGORIA"
+          placeholder="Añade una categoria"
           name="name"
           defaultValue={item.name}
           onChange={(event) => {

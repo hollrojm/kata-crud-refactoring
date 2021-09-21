@@ -18,10 +18,7 @@ export function reducer(state, action) {
       });
       taskListDelete.list = listTaskUpdate;
       return { ...state, taskCategory: taskListDelete };
-    // case 'taskCategory':
-    //   const taskCategory = state.taskCategory;
-    //   taskCategory.list = action.list;
-    //   return { ...state, taskCategory: taskCategory };
+
     case 'delete-item':
       const todoUpDelete = state.todo;
       const listUpdate = todoUpDelete.list.filter((item) => {
@@ -49,7 +46,7 @@ export function reducer(state, action) {
         const taskCategory = state.taskCategory;
         taskCategory.list = action.list;
         return { ...state, taskCategory: taskCategory };
-    case 'todolist-add':
+    case 'category-add':
           const todoListAdd = state.taskCategory.list;
           todoListAdd.push(action.item);
           return { ...state, taskCategory: {list:todoListAdd} };

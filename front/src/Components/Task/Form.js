@@ -33,7 +33,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
     })
       .then(response => response.json())
       .then((todo) => {
-        dispatch({ type: "add-itemtask", item: todo });
+        dispatch({ type: "add-item", item: todo });
         setState({ name: "" });
         formRef.current.reset();
       });
@@ -71,7 +71,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
       required
       type="text"
       name="name"
-      placeholder="¿Qué piensas hacer hoy?"
+      placeholder="¿Agrega una tarea?"
       defaultValue={item.name}
       onChange={(event) => {
         setState({ ...state, name: event.target.value });
